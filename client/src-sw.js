@@ -28,20 +28,22 @@ registerRoute(({ request }) => request.mode === 'navigate', pageCache);
 
 // Implement asset caching
 registerRoute(
-  ({ request }) => ['style', 'script', 'worker'].includes(request.destination),
-  offlineFallback(
-    'offline-fallback',
-    new CacheFirst({
-      cacheName: 'asset-cache',
-      plugins: [
-        new CacheableResponsePlugin({
-          statuses: [0, 200],
-        }),
-        // Implement cache expiration
-        new ExpirationPlugin({
-          maxAgeSeconds: 30 * 24 * 60 * 60,
-        }),
-      ],
-    }),
-  ),
+  ({ request }) => ['style', 'script', 'worker'].includes(request.destination), // Cache style, script, and worker requests
+  new offlineFallback({ // Use offline fallback strategy
+    cacheName: 'offline-fallback', // Cache name
+    plugins: [
+      new CacheFirst({ // Fallback to cache first strategy
+        cacheName: 'asset-cache', // Cache name
+        plugins: [
+          new CacheableResponsePlugin({
+            statuses: [0, 200],
+          }),
+          // Implement cache expiration
+          new ExpirationPlugin({
+            maxAgeSeconds: 30 * 24 * 60 * 60,
+          }),
+        ],
+      }),
+    ],
+  }),
 );

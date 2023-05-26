@@ -13,7 +13,7 @@ const initdb = async () =>
   });
 
 // Logic for PUT method that accepts some content and adds it to the database
-export const putDb = async (content) => {
+export const putDb = async (id, content) => {
 
   console.log('Update data in IndexedDB');
 
@@ -27,7 +27,7 @@ export const putDb = async (content) => {
   const store = tx.objectStore('jate');
 
   // Add the data to the database
-  const request = store.put({ content });
+  const request = store.put({ id: id, jate: content });
 
   // Wait for the request to complete
   const result = await request;

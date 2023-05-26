@@ -44,6 +44,12 @@ module.exports = () => {
             destination: path.join('assets', 'icons'),
           },
         ],
+        "protocol_handlers": [
+          {
+            "protocol": "web+text",
+            "url": "/text?type=%s"
+          },
+        ],
       }),
 
     ],

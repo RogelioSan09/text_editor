@@ -38,5 +38,11 @@
   "start_url": "./index.html",
   "description": "Because...Why not another text editor?",
   "background_color": "#a5d6a7",
-  "theme_color": "#a5d6a7"
+  "theme_color": "#a5d6a7",
+  "protocol_handlers": [
+    {
+      "protocol": "web+text",
+      "url": "/text?type=%s"
+    }
+  ]
 }
