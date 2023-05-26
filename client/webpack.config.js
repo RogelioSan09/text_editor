@@ -35,19 +35,13 @@ module.exports = () => {
         description: 'Because...Why not another text editor?', 
         background_color: '#a5d6a7',
         theme_color: '#a5d6a7',
-        start_url: './index.html',
+        start_url: './',
         publicPath: './',
         icons: [
           {
             src: path.resolve('src/images/logo.png'),
             sizes: [96, 128, 192, 256, 384, 512],
             destination: path.join('assets', 'icons'),
-          },
-        ],
-        "protocol_handlers": [
-          {
-            "protocol": "web+text",
-            "url": "/text?type=%s"
           },
         ],
       }),

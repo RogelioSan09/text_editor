@@ -29,9 +29,8 @@ registerRoute(({ request }) => request.mode === 'navigate', pageCache);
 // Implement asset caching
 registerRoute(
   ({ request }) => ['style', 'script', 'worker'].includes(request.destination), // Cache style, script, and worker requests
-  new offlineFallback({ // Use offline fallback strategy
-    cacheName: 'offline-fallback', // Cache name
-    plugins: [
+  offlineFallback( // Use offline fallback strategy
+    'offline-fallback', // Cache name
       new CacheFirst({ // Fallback to cache first strategy
         cacheName: 'asset-cache', // Cache name
         plugins: [
@@ -44,6 +43,5 @@ registerRoute(
           }),
         ],
       }),
-    ],
-  }),
+  ),
 );
